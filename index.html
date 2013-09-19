@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Drop List</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/dropList.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="js/jquery.dropList.1.0.0.js"></script>
+<script>
+$(document).ready(function(){
+		$('#dlist').dropList({
+			direction	: "bottom"
+		});	
+
+});
+</script>
+</head>
+<body>
+<div class="container">
+<h1>DropList</h1>
+<p>dropList lightweight dropdown using jquery</p>
+	<div class="wrapper" id="dwrapper">
+		<select id="dlist">
+		  <option value="volvo">Volvo</option>
+		  <option value="saab">Saab</option>
+		  <option value="mercedes">Mercedes</option>
+		  <option value="audi">Audi</option>
+		</select>
+	</div>
+<p>can customize based on your requirements</p>	
+</div>
+</body>
+</html>

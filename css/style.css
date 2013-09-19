@@ -1,0 +1,9 @@
+body{
+	background: #cbcbcb;
+}
+h1,h2,h3,h4{ color: #f44549; font-family:"Lucida Sans", Arial, Helvetica, sans-serif; white-space: 1px; letter-spacing: 1px; font-weight: 100;}
+p{color: #6a6a6a; font-family:"Lucida Sans", Arial, Helvetica, sans-serif; font-size: 14px; letter-spacing: 1px;}
+.container{ 
+width:1024px;
+	margin: 0px auto;
+}

@@ -1,0 +1,58 @@
+.wrapper{
+	width:400px;
+	margin: 20px auto;
+}
+.dListholder{ 
+	background: #f44549;
+	font-size: 16px;
+	font-weight: 300;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	min-height: 30px;
+}
+.dListText{
+	padding: 5px 13px;
+	color: #fff; 
+	font-family:"Lucida Sans", Arial, Helvetica, sans-serif; 
+	float: left;
+	width:330px;
+}
+.dListBtn{
+	background: url(../images/drop_btn.png);
+	width:25px;
+	height: 19px;
+	float: right;
+	margin-right: 6px;
+	margin-top: 5px;
+}
+.dListBtn,.dListText:hover{
+	cursor: pointer;
+
+}
+.dListdivider{
+	height:10px;
+}
+.dListdrop{
+	background: #f44549;
+	padding: 5px 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	position: absolute;
+	z-index: 10;
+	width:380px;
+	display: none;
+	
+}
+.dlitem{
+	padding: 3px 5px;
+	font-family:"Lucida Sans", Arial, Helvetica, sans-serif; 
+	font-size: 14px;
+}
+.dlithov:hover{
+	background: #ffa2a4;
+	cursor: pointer;
+	color: #fff;
+}
+.fleft{ float:left;}
