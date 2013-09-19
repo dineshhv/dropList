@@ -134,6 +134,8 @@
 				$("#dldrop_"+split[1]+" #SelectItem").click(function(){
 					selection=$(this).text();
 					$('#dlholder_'+split[1]+' #dltext').text(selection);
+					$('#dlholder_'+split[1]).siblings('#dlist').children('option:selected').removeAttr('selected');
+					$('#dlholder_'+split[1]).siblings('#dlist').children('option[value='+selection+']').attr('selected', 'selected');
 					$( "#dldrop_"+split[1] ).slideUp( 200, function() {
 					});
 				});
