@@ -268,6 +268,22 @@
 		                count++;
 		            }
 	            });
+	            if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+				{
+								
+				}
+				else
+				{
+						$(this).removeClass('currentclick');
+						$("#dldrop_"+split[1]+" #SelectItem").click(function(){
+							selection=$(this).text();
+							$('#dlholder_'+split[1]+' #dltext input').val(selection);
+							$('#dlholder_'+split[1]).siblings('#dlist').children('option:selected').removeAttr('selected');
+							$('#dlholder_'+split[1]).siblings('#dlist').children('option[value='+selection+']').attr('selected', 'selected');
+							$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
+							});
+						});
+				}
 			});
 			
 			$('#dlbtn_'+rand).click(function(){
@@ -290,6 +306,22 @@
 						$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
 						 
 					  	});
+					}
+					if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+					{
+								
+					}
+					else
+					{
+						$(this).removeClass('currentclick');
+						$("#dldrop_"+split[1]+" #SelectItem").click(function(){
+							selection=$(this).text();
+							$('#dlholder_'+split[1]+' #dltext input').val(selection);
+							$('#dlholder_'+split[1]).siblings('#dlist').children('option:selected').removeAttr('selected');
+							$('#dlholder_'+split[1]).siblings('#dlist').children('option[value='+selection+']').attr('selected', 'selected');
+							$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
+							});
+						});
 					}
 			});
 			
