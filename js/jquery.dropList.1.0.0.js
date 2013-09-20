@@ -80,159 +80,176 @@
 		ID=element.attr('id');
 		parentID=element.parent().attr('id');
 		$('#'+ID).hide();
-		if(options.direction=='bottom')
+		if(options.search==false)
 		{
+			if(options.direction=='bottom')
+			{
+				
+				$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText" id="dltext"  data-titem="'+options.text+'">'+options.text+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
+				$('#'+parentID).append('<div class="dListdivider" id="dldivider_'+rand+'"></div>');
+				$('#'+parentID).append('<div class="dListdrop" id="dldrop_'+rand+'"></div>');
+				$('#'+ID+' option').each(function(){
+					$('#dldrop_'+rand).append('<div class="dlitem" id="SelectItem" data-val='+this.value+'>'+this.value+'</div>');
+				});
+			}
+			else if(options.direction=='left')
+			{
+				$('#'+parentID).append('<div class="dListholder fleft" id="dlholder"><div class="dListText" id="dltext">'+options.text+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
+				$('#'+parentID).append('<div class="dListdivider fleft" id="dldivider"></div>');
+				$('#'+parentID).append('<div class="dListdrop fleft" id="dldrop"></div>');
+				$('#'+ID+' option').each(function(){
+					$('#dldrop').append('<div class="dlitem" id="SelectItem" data-val='+this.value+'>'+this.value+'</div>');
+				});
+			}
 			
+			if(options.multiple==false)
+			{
+				$('#dlholder_'+rand).click(function(){
+					var split=this.id.split("_");
+						
+					if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+					{
+						
+						$("#dldrop_"+split[1]+" #SelectItem").each(function(){
+							$(this).addClass('dlithov');
+						});
+						$( "#dldrop_"+split[1] ).slideDown( options.speed, function() {
+						});
+					} 
+					else 
+					{
+					    $("#dldrop_"+split[1]+" #SelectItem").each(function(){
+							$(this).removeClass('dlithov');
+						});
+						$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
+						 
+					  	});
+					}
+					if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+					{
+								
+					}
+					else
+					{
+						$(this).removeClass('currentclick');
+						$("#dldrop_"+split[1]+" #SelectItem").click(function(){
+							selection=$(this).text();
+							$('#dlholder_'+split[1]+' #dltext').text(selection);
+							$('#dlholder_'+split[1]).siblings('#dlist').children('option:selected').removeAttr('selected');
+							$('#dlholder_'+split[1]).siblings('#dlist').children('option[value='+selection+']').attr('selected', 'selected');
+							$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
+							});
+						});
+					}
+						
+				});
+			}
+			else if(options.multiple==true)
+			{
+				$('#dlholder_'+rand).click(function(){
+					var split=this.id.split("_");
+					var Stext=$("#dlholder_"+split[1]).children('#tempdllist').text();	
+					if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+					{
+						
+						$("#dldrop_"+split[1]+" #SelectItem").each(function(){
+							$(this).addClass('dlithov');
+						});
+						$( "#dldrop_"+split[1] ).slideDown( options.speed, function() {
+						});
+					} 
+					else 
+					{
+					    $("#dldrop_"+split[1]+" #SelectItem").each(function(){
+							$(this).removeClass('dlithov');
+						});
+						$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
+						 
+					  	});
+					}
+					if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+					{
+								
+					}
+					else
+					{
+						
+						if(Stext==options.text)
+						{
+							var items=[];
+						}
+						else
+						{
+							var items=Stext.split(',');
+						}
+						
+						//var trainindIdArray = 
+						$(this).removeClass('currentclick');
+						$("#dldrop_"+split[1]+" #SelectItem").each(function(){
+							$(this).click(function(){
+								var disable=$(this).hasClass('ItemAdded');
+								if(disable==false)
+								{					
+									$(this).addClass('ItemAdded');
+									var selection=$(this).text();
+	
+									items.push(selection);
+									$('#dlholder_'+split[1]+' #dltext').text(selection);
+									$('#dlholder_'+split[1]).siblings('select').children('option:selected').removeAttr('selected');
+									$.each(items,function(e,value){
+										$('#dlholder_'+split[1]).siblings('select').children('option[value='+value+']').attr('selected', 'selected');
+									});
+									var stringme=items+"";
+									$('#dlholder_'+split[1]+' #dltext').text(stringme);
+									$('#dlholder_'+split[1]+' #tempdllist').text(stringme);	
+									
+								}
+								else
+								{
+									selection=$(this).text();
+									$(this).removeClass('ItemAdded');
+									items = jQuery.grep(items, function(value) {
+									  return value != selection;
+									});
+									var stringme=items+"";
+									$('#dlholder_'+split[1]+' #dltext').text(stringme);
+									$('#dlholder_'+split[1]+' #tempdllist').text(stringme);
+									$('#dlholder_'+split[1]).siblings('select').children('option[value='+selection+']').removeAttr('selected');
+									if(items.length==0)
+									{
+										$('#dlholder_'+split[1]+' #dltext').text(options.text);
+										$('#dlholder_'+split[1]+' #tempdllist').text(options.text);
+										
+									}
+								}
+							});
+						
+						});
+					
+					}
+						
+				});
+	
+			}
+			
+			
+			
+		}
+		else if(options.search==true&&options.multiple==false)
+		{
 			$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText" id="dltext"  data-titem="'+options.text+'">'+options.text+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
 			$('#'+parentID).append('<div class="dListdivider" id="dldivider_'+rand+'"></div>');
 			$('#'+parentID).append('<div class="dListdrop" id="dldrop_'+rand+'"></div>');
 			$('#'+ID+' option').each(function(){
 				$('#dldrop_'+rand).append('<div class="dlitem" id="SelectItem" data-val='+this.value+'>'+this.value+'</div>');
 			});
-		}
-		if(options.direction=='left')
-		{
-			$('#'+parentID).append('<div class="dListholder fleft" id="dlholder"><div class="dListText" id="dltext">'+options.text+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
-			$('#'+parentID).append('<div class="dListdivider fleft" id="dldivider"></div>');
-			$('#'+parentID).append('<div class="dListdrop fleft" id="dldrop"></div>');
-			$('#'+ID+' option').each(function(){
-				$('#dldrop').append('<div class="dlitem" id="SelectItem" data-val='+this.value+'>'+this.value+'</div>');
-			});
-		}
-		
-		if(options.multiple==false&&options.search==false)
-		{
-			$('#dlholder_'+rand).click(function(){
-				var split=this.id.split("_");
-					
-				if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
-				{
-					
-					$("#dldrop_"+split[1]+" #SelectItem").each(function(){
-						$(this).addClass('dlithov');
-					});
-					$( "#dldrop_"+split[1] ).slideDown( options.speed, function() {
-					});
-				} 
-				else 
-				{
-				    $("#dldrop_"+split[1]+" #SelectItem").each(function(){
-						$(this).removeClass('dlithov');
-					});
-					$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
-					 
-				  	});
-				}
-				if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
-				{
-							
-				}
-				else
-				{
-					$(this).removeClass('currentclick');
-					$("#dldrop_"+split[1]+" #SelectItem").click(function(){
-						selection=$(this).text();
-						$('#dlholder_'+split[1]+' #dltext').text(selection);
-						$('#dlholder_'+split[1]).siblings('#dlist').children('option:selected').removeAttr('selected');
-						$('#dlholder_'+split[1]).siblings('#dlist').children('option[value='+selection+']').attr('selected', 'selected');
-						$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
-						});
-					});
-				}
-					
-			});
-		}
-		else if(options.multiple==true&&options.search==false)
-		{
-			$('#dlholder_'+rand).click(function(){
-				var split=this.id.split("_");
-				var Stext=$("#dlholder_"+split[1]).children('#tempdllist').text();	
-				if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
-				{
-					
-					$("#dldrop_"+split[1]+" #SelectItem").each(function(){
-						$(this).addClass('dlithov');
-					});
-					$( "#dldrop_"+split[1] ).slideDown( options.speed, function() {
-					});
-				} 
-				else 
-				{
-				    $("#dldrop_"+split[1]+" #SelectItem").each(function(){
-						$(this).removeClass('dlithov');
-					});
-					$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
-					 
-				  	});
-				}
-				if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
-				{
-							
-				}
-				else
-				{
-					
-					if(Stext==options.text)
-					{
-						var items=[];
-					}
-					else
-					{
-						var items=Stext.split(',');
-					}
-					
-					//var trainindIdArray = 
-					$(this).removeClass('currentclick');
-					$("#dldrop_"+split[1]+" #SelectItem").each(function(){
-						$(this).click(function(){
-							var disable=$(this).hasClass('ItemAdded');
-							if(disable==false)
-							{					
-								$(this).addClass('ItemAdded');
-								var selection=$(this).text();
-
-								items.push(selection);
-								$('#dlholder_'+split[1]+' #dltext').text(selection);
-								$('#dlholder_'+split[1]).siblings('select').children('option:selected').removeAttr('selected');
-								$.each(items,function(e,value){
-									$('#dlholder_'+split[1]).siblings('select').children('option[value='+value+']').attr('selected', 'selected');
-								});
-								var stringme=items+"";
-								$('#dlholder_'+split[1]+' #dltext').text(stringme);
-								$('#dlholder_'+split[1]+' #tempdllist').text(stringme);	
-								
-							}
-							else
-							{
-								selection=$(this).text();
-								$(this).removeClass('ItemAdded');
-								items = jQuery.grep(items, function(value) {
-								  return value != selection;
-								});
-								var stringme=items+"";
-								$('#dlholder_'+split[1]+' #dltext').text(stringme);
-								$('#dlholder_'+split[1]+' #tempdllist').text(stringme);
-								$('#dlholder_'+split[1]).siblings('select').children('option[value='+selection+']').removeAttr('selected');
-								if(items.length==0)
-								{
-									$('#dlholder_'+split[1]+' #dltext').text(options.text);
-									$('#dlholder_'+split[1]+' #tempdllist').text(options.text);
-									
-								}
-							}
-						});
-					
-					});
-				
-				}
-					
-			});
-
-		}
-		else if(options.search==false)
-		{
+			
+			
 			
 		}
+		
+		
+		
  };
   
   

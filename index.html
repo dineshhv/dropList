@@ -16,6 +16,11 @@ $(document).ready(function(){
 			direction	: "bottom",
 			multiple	: true
 		});
+		$('#dlist3').dropList({
+			direction	: "bottom",
+			search		: true
+		});
+
 
 });
 </script>
@@ -49,7 +54,15 @@ $(document).ready(function(){
 		  <option value="Mclaren">Mclaren</option>
 		</select>
 	</div>
-
+<p>Default Drop down list with search field</p>
+	<div class="wrapper" id="dwrapper3">
+		<select id="dlist3">
+		  <option value="volvo">Volvo</option>
+		  <option value="saab">Saab</option>
+		  <option value="mercedes">Mercedes</option>
+		  <option value="audi">Audi</option>
+		</select>
+	</div>
 
 </div>
 </body>
