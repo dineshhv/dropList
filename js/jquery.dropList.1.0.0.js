@@ -237,7 +237,7 @@
 		}
 		else if(options.search==true&&options.multiple==false)
 		{
-			$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText" id="dltext"  data-titem="'+options.text+'">'+options.text+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
+			$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText reducepad" id="dltext"  data-titem="'+options.text+'"><input type="text" name="searchstring" class="dlsearch" placeholder="'+options.text+'" id="dlsrch"></div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
 			$('#'+parentID).append('<div class="dListdivider" id="dldivider_'+rand+'"></div>');
 			$('#'+parentID).append('<div class="dListdrop" id="dldrop_'+rand+'"></div>');
 			$('#'+ID+' option').each(function(){
