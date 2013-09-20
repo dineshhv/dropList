@@ -237,12 +237,62 @@
 		}
 		else if(options.search==true&&options.multiple==false)
 		{
-			$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText reducepad" id="dltext"  data-titem="'+options.text+'"><input type="text" name="searchstring" class="dlsearch" placeholder="'+options.text+'" id="dlsrch"></div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
+			
+			$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText reducepad" id="dltext"  data-titem="'+options.text+'"><input type="text" name="searchstring" class="dlsearch" placeholder="'+options.text+'" id="dlsrch_'+rand+'"></div><div class="dListBtn" id="dlbtn_'+rand+'" ref="'+rand+'"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
 			$('#'+parentID).append('<div class="dListdivider" id="dldivider_'+rand+'"></div>');
 			$('#'+parentID).append('<div class="dListdrop" id="dldrop_'+rand+'"></div>');
 			$('#'+ID+' option').each(function(){
 				$('#dldrop_'+rand).append('<div class="dlitem" id="SelectItem" data-val='+this.value+'>'+this.value+'</div>');
 			});
+			
+			$("#dlsrch_"+rand).keyup(function(e){
+				
+				var split=this.id.split("_");
+				var filter = $(this).val(), count = 0;
+				if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+				{
+						
+						$("#dldrop_"+split[1]+" #SelectItem").each(function(){
+							$(this).addClass('dlithov');
+						});
+						$( "#dldrop_"+split[1] ).slideDown( options.speed, function() {
+						});
+				} 
+				
+				$("#dldrop_"+split[1]+" #SelectItem").each(function(){
+					if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+		                $(this).hide();
+		 
+		            } else {
+		                $(this).show();
+		                count++;
+		            }
+	            });
+			});
+			
+			$('#dlbtn_'+rand).click(function(){
+					var split=this.id.split("_");
+					console.log(this.id);
+					if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+					{
+						
+						$("#dldrop_"+split[1]+" #SelectItem").each(function(){
+							$(this).addClass('dlithov');
+						});
+						$( "#dldrop_"+split[1] ).slideDown( options.speed, function() {
+						});
+					} 
+					else 
+					{
+					    $("#dldrop_"+split[1]+" #SelectItem").each(function(){
+							$(this).removeClass('dlithov');
+						});
+						$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
+						 
+					  	});
+					}
+			});
+			
 			
 			
 			
