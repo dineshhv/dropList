@@ -16,16 +16,15 @@
    {
        var elem = $(element);
        var obj = this;
-
+       var rand;
        // Merge options with defaults
        var settings = $.extend({
-          highlight : true,
-          speed		: 1000,
+       	  text		: "Select your car",
+          speed		: 200,
           direction	: "bottom",
           type		: "dropdown",
-          
-          
-          
+          search	: false,
+          multiple	: false
        }, options || {});
        
        var matched, browser;
@@ -62,7 +61,7 @@
 		jQuery.browser = browser;
 		
        GenerateUI(elem, settings, matched.browser);
-       addhighlight(elem, settings, matched.browser);
+
       
        
        
@@ -76,14 +75,15 @@
    function GenerateUI(element, options, browser) 
    {
 		
-		var rand=Math.floor((Math.random()*9999999)+9999);
+		rand=Math.floor((Math.random()*9999999)+9999);
 
 		ID=element.attr('id');
 		parentID=element.parent().attr('id');
 		$('#'+ID).hide();
 		if(options.direction=='bottom')
 		{
-			$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText" id="dltext">Select your Car</div><div class="dListBtn" id="dlbtn"></div></div>');
+			
+			$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText" id="dltext"  data-titem="'+options.text+'">'+options.text+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
 			$('#'+parentID).append('<div class="dListdivider" id="dldivider_'+rand+'"></div>');
 			$('#'+parentID).append('<div class="dListdrop" id="dldrop_'+rand+'"></div>');
 			$('#'+ID+' option').each(function(){
@@ -92,7 +92,7 @@
 		}
 		if(options.direction=='left')
 		{
-			$('#'+parentID).append('<div class="dListholder fleft" id="dlholder"><div class="dListText" id="dltext">Select your Car</div><div class="dListBtn" id="dlbtn"></div></div>');
+			$('#'+parentID).append('<div class="dListholder fleft" id="dlholder"><div class="dListText" id="dltext">'+options.text+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
 			$('#'+parentID).append('<div class="dListdivider fleft" id="dldivider"></div>');
 			$('#'+parentID).append('<div class="dListdrop fleft" id="dldrop"></div>');
 			$('#'+ID+' option').each(function(){
@@ -100,52 +100,140 @@
 			});
 		}
 		
-	    	
-   }
-   function addhighlight(element, options, browser) 
-   {
-		
-		$(".dListholder").click(function(){
-			var split=this.id.split("_");
-			if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
-			{
-				$("#dldrop_"+split[1]+" #SelectItem").each(function(){
+		if(options.multiple==false&&options.search==false)
+		{
+			$('#dlholder_'+rand).click(function(){
+				var split=this.id.split("_");
+					
+				if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+				{
+					
+					$("#dldrop_"+split[1]+" #SelectItem").each(function(){
 						$(this).addClass('dlithov');
-				 });
-				$( "#dldrop_"+split[1] ).slideDown( 200, function() {
-				});
-			} 
-			else 
-			{
-			   $("#dldrop_"+split[1]+" #SelectItem").each(function(){
-					$(this).removeClass('dlithov');
-				});
-				$( "#dldrop_"+split[1] ).slideUp( 200, function() {
-				 
-			  	});
-			}
-			if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
-			{
-						
-			}
-			else
-			{
-				
-				$("#dldrop_"+split[1]+" #SelectItem").click(function(){
-					selection=$(this).text();
-					$('#dlholder_'+split[1]+' #dltext').text(selection);
-					$('#dlholder_'+split[1]).siblings('#dlist').children('option:selected').removeAttr('selected');
-					$('#dlholder_'+split[1]).siblings('#dlist').children('option[value='+selection+']').attr('selected', 'selected');
-					$( "#dldrop_"+split[1] ).slideUp( 200, function() {
 					});
-				});
-			}	
-		});
-		
-		   
-		
-	   	
-   };
+					$( "#dldrop_"+split[1] ).slideDown( options.speed, function() {
+					});
+				} 
+				else 
+				{
+				    $("#dldrop_"+split[1]+" #SelectItem").each(function(){
+						$(this).removeClass('dlithov');
+					});
+					$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
+					 
+				  	});
+				}
+				if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+				{
+							
+				}
+				else
+				{
+					$(this).removeClass('currentclick');
+					$("#dldrop_"+split[1]+" #SelectItem").click(function(){
+						selection=$(this).text();
+						$('#dlholder_'+split[1]+' #dltext').text(selection);
+						$('#dlholder_'+split[1]).siblings('#dlist').children('option:selected').removeAttr('selected');
+						$('#dlholder_'+split[1]).siblings('#dlist').children('option[value='+selection+']').attr('selected', 'selected');
+						$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
+						});
+					});
+				}
+					
+			});
+		}
+		else if(options.multiple==true&&options.search==false)
+		{
+			$('#dlholder_'+rand).click(function(){
+				var split=this.id.split("_");
+				var Stext=$("#dlholder_"+split[1]).children('#tempdllist').text();	
+				if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+				{
+					
+					$("#dldrop_"+split[1]+" #SelectItem").each(function(){
+						$(this).addClass('dlithov');
+					});
+					$( "#dldrop_"+split[1] ).slideDown( options.speed, function() {
+					});
+				} 
+				else 
+				{
+				    $("#dldrop_"+split[1]+" #SelectItem").each(function(){
+						$(this).removeClass('dlithov');
+					});
+					$( "#dldrop_"+split[1] ).slideUp( options.speed, function() {
+					 
+				  	});
+				}
+				if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
+				{
+							
+				}
+				else
+				{
+					
+					if(Stext==options.text)
+					{
+						var items=[];
+					}
+					else
+					{
+						var items=Stext.split(',');
+					}
+					
+					//var trainindIdArray = 
+					$(this).removeClass('currentclick');
+					$("#dldrop_"+split[1]+" #SelectItem").each(function(){
+						$(this).click(function(){
+							var disable=$(this).hasClass('ItemAdded');
+							if(disable==false)
+							{					
+								$(this).addClass('ItemAdded');
+								var selection=$(this).text();
+
+								items.push(selection);
+								$('#dlholder_'+split[1]+' #dltext').text(selection);
+								$('#dlholder_'+split[1]).siblings('select').children('option:selected').removeAttr('selected');
+								$.each(items,function(e,value){
+									$('#dlholder_'+split[1]).siblings('select').children('option[value='+value+']').attr('selected', 'selected');
+								});
+								var stringme=items+"";
+								$('#dlholder_'+split[1]+' #dltext').text(stringme);
+								$('#dlholder_'+split[1]+' #tempdllist').text(stringme);	
+								
+							}
+							else
+							{
+								selection=$(this).text();
+								$(this).removeClass('ItemAdded');
+								items = jQuery.grep(items, function(value) {
+								  return value != selection;
+								});
+								var stringme=items+"";
+								$('#dlholder_'+split[1]+' #dltext').text(stringme);
+								$('#dlholder_'+split[1]+' #tempdllist').text(stringme);
+								$('#dlholder_'+split[1]).siblings('select').children('option[value='+selection+']').removeAttr('selected');
+								if(items.length==0)
+								{
+									$('#dlholder_'+split[1]+' #dltext').text(options.text);
+									$('#dlholder_'+split[1]+' #tempdllist').text(options.text);
+									
+								}
+							}
+						});
+					
+					});
+				
+				}
+					
+			});
+
+		}
+		else if(options.search==false)
+		{
+			
+		}
+ };
   
   
    $.fn.dropList = function(options)

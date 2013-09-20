@@ -17,6 +17,7 @@
 	font-family:"Lucida Sans", Arial, Helvetica, sans-serif; 
 	float: left;
 	width:330px;
+	overflow:hidden;
 }
 .dListBtn{
 	background: url(../images/drop_btn.png);
@@ -49,6 +50,7 @@
 	padding: 3px 5px;
 	font-family:"Lucida Sans", Arial, Helvetica, sans-serif; 
 	font-size: 14px;
+	margin-bottom: 1px;
 }
 .dlithov:hover{
 	background: #ffa2a4;
@@ -56,3 +58,7 @@
 	color: #fff;
 }
 .fleft{ float:left;}
+.ItemAdded{
+	background: #fff;
+	color: #000;
+}

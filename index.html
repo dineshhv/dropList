@@ -11,6 +11,11 @@ $(document).ready(function(){
 		$('#dlist').dropList({
 			direction	: "bottom"
 		});	
+		
+		$('#dlist2').dropList({
+			direction	: "bottom",
+			multiple	: true
+		});
 
 });
 </script>
@@ -27,7 +32,25 @@ $(document).ready(function(){
 		  <option value="audi">Audi</option>
 		</select>
 	</div>
-<p>can customize based on your requirements</p>	
+<p>Default Drop down list</p>	
+<p>Default Drop down list</p>
+	<div class="wrapper" id="dwrapper2">
+		<select id="dlist2"  multiple>
+		  <option value="volvo">Volvo</option>
+		  <option value="saab">Saab</option>
+		  <option value="mercedes">Mercedes</option>
+		  <option value="audi">Audi</option>
+		  <option value="Hyndai">Hyndai</option>
+		  <option value="Honda">Honda</option>
+		  <option value="Ferrari">Ferrari</option>
+		  <option value="Ducati">Ducati</option>
+		  <option value="Tesla">Tesla</option>
+		  <option value="volkswagon">volkswagon</option>
+		  <option value="Mclaren">Mclaren</option>
+		</select>
+	</div>
+
+
 </div>
 </body>
 </html>
