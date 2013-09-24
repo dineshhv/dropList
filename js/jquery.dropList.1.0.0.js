@@ -21,10 +21,11 @@
        var settings = $.extend({
        	  text		: "Select your car",
           speed		: 200,
-          direction	: "bottom",
+        
           type		: "dropdown",
           search	: false,
-          multiple	: false
+          multiple	: false,
+          selected	: ""
        }, options || {});
        
        var matched, browser;
@@ -82,31 +83,51 @@
 		$('#'+ID).hide();
 		if(options.search==false)
 		{
-			if(options.direction=='bottom')
+			
+			if(options.selected=="")
 			{
-				
 				$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText" id="dltext"  data-titem="'+options.text+'">'+options.text+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
-				$('#'+parentID).append('<div class="dListdivider" id="dldivider_'+rand+'"></div>');
-				$('#'+parentID).append('<div class="dListdrop" id="dldrop_'+rand+'"></div>');
-				$('#'+ID+' option').each(function(){
-					$('#dldrop_'+rand).append('<div class="dlitem" id="SelectItem" data-val='+this.value+'>'+this.value+'</div>');
-				});
 			}
-			else if(options.direction=='left')
+			else
 			{
-				$('#'+parentID).append('<div class="dListholder fleft" id="dlholder"><div class="dListText" id="dltext">'+options.text+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
-				$('#'+parentID).append('<div class="dListdivider fleft" id="dldivider"></div>');
-				$('#'+parentID).append('<div class="dListdrop fleft" id="dldrop"></div>');
-				$('#'+ID+' option').each(function(){
-					$('#dldrop').append('<div class="dlitem" id="SelectItem" data-val='+this.value+'>'+this.value+'</div>');
-				});
+				var json=$.parseJSON( options.selected);
+				var parsed=json[0];
+				if(options.multiple==false)
+				{
+				$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText" id="dltext"  data-titem="'+options.text+'">'+parsed+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
+				$('#dlholder_'+rand).siblings('#dlist').children('option[value='+parsed+']').attr('selected', 'selected');
+				}
+				else
+				{	var temp='';
+					$.each(json,function(key,value){
+						
+						$('#dlholder_'+rand).siblings('#dlist').children('option[value='+value+']').attr('selected', 'selected');
+						temp+=value+',';
+					});
+					temp=temp.substr(0,temp.length-1);
+					$("#dlholder_"+rand).children('#tempdllist').text(temp);
+					$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText" id="dltext"  data-titem="'+temp+'">'+temp+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
+					
+					
+				}
 			}
+			
+			$('#'+parentID).append('<div class="dListdivider" id="dldivider_'+rand+'"></div>');
+			$('#'+parentID).append('<div class="dListdrop" id="dldrop_'+rand+'"></div>');
+			$('#'+ID+' option').each(function(){
+				$('#dldrop_'+rand).append('<div class="dlitem" id="SelectItem" data-val='+this.value+'>'+this.value+'</div>');
+			});
 			
 			if(options.multiple==false)
 			{
 				$('#dlholder_'+rand).click(function(){
 					var split=this.id.split("_");
-						
+					$('.dListdrop').each(function(){
+						if(this.id!="dldrop_"+split[1]&&$('#'+this.id).is(":visible"))
+						{
+							$("#"+this.id).slideUp();
+						}
+					});	
 					if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
 					{
 						
@@ -147,7 +168,14 @@
 			else if(options.multiple==true)
 			{
 				$('#dlholder_'+rand).click(function(){
+					
 					var split=this.id.split("_");
+					$('.dListdrop').each(function(){
+						if(this.id!="dldrop_"+split[1]&&$('#'+this.id).is(":visible"))
+						{
+							$("#"+this.id).slideUp();
+						}
+					});
 					var Stext=$("#dlholder_"+split[1]).children('#tempdllist').text();	
 					if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
 					{
@@ -248,6 +276,12 @@
 			$("#dlsrch_"+rand).keyup(function(e){
 				
 				var split=this.id.split("_");
+				$('.dListdrop').each(function(){
+						if(this.id!="dldrop_"+split[1]&&$('#'+this.id).is(":visible"))
+						{
+							$("#"+this.id).slideUp();
+						}
+					});
 				var filter = $(this).val(), count = 0;
 				if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
 				{
@@ -288,7 +322,14 @@
 			
 			$('#dlbtn_'+rand).click(function(){
 					var split=this.id.split("_");
-					console.log(this.id);
+					$('.dListdrop').each(function(){
+						if(this.id!="dldrop_"+split[1]&&$('#'+this.id).is(":visible"))
+						{
+							
+							$("#"+this.id).slideUp();
+						}
+					});
+					
 					if( $( "#dldrop_"+split[1] ).is( ":hidden" ) )
 					{
 						

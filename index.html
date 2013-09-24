@@ -9,12 +9,14 @@
 <script>
 $(document).ready(function(){
 		$('#dlist').dropList({
-			direction	: "bottom"
+			direction	: "bottom",
+			selected	: '["saab"]'
 		});	
 		
 		$('#dlist2').dropList({
 			direction	: "bottom",
-			multiple	: true
+			multiple	: true,
+			selected	: '["saab","Honda"]'
 		});
 		$('#dlist3').dropList({
 			direction	: "bottom",
