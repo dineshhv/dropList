@@ -75,7 +75,7 @@
 
    function GenerateUI(element, options, browser) 
    {
-		
+		console.log(options.ar);
 		rand=Math.floor((Math.random()*9999999)+9999);
 
 		ID=element.attr('id');
