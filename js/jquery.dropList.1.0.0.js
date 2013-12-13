@@ -99,9 +99,12 @@
 				}
 				else
 				{	var temp='';
+					
 					$.each(json,function(key,value){
-						
-						$('#dlholder_'+rand).siblings('#dlist').children('option[value='+value+']').attr('selected', 'selected');
+
+						console.log($('#'+ID));
+						$('#'+ID).children('option[value='+value+']').attr('selected', 'selected');
+						//$('#dlholder_'+rand).siblings('#'+ID).children('option[value='+value+']').attr('selected', 'selected');
 						temp+=value+',';
 					});
 					temp=temp.substr(0,temp.length-1);

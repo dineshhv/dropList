@@ -9,20 +9,16 @@
 <script>
 $(document).ready(function(){
 		$('#dlist').dropList({
-			direction	: "bottom",
 			selected	: '["default"]'
 		});	
 		
 		$('#dlist2').dropList({
-			direction	: "bottom",
 			multiple	: true,
 			selected	: '["saab","Honda"]'
 		});
 		$('#dlist3').dropList({
-			direction	: "bottom",
-			search		: true
-
-		});
+ 			search		: true
+ 		});
 
 		$('#get_json').click(function(e){
 			e.preventDefault();
