@@ -10,7 +10,7 @@
 $(document).ready(function(){
 		$('#dlist').dropList({
 			direction	: "bottom",
-			selected	: '["saab"]'
+			selected	: '["default"]'
 		});	
 		
 		$('#dlist2').dropList({
@@ -24,7 +24,10 @@ $(document).ready(function(){
 
 		});
 
-
+		$('#get_json').click(function(e){
+			e.preventDefault();
+			alert('Item: '+$('#dlist').val());
+		});
 });
 </script>
 </head>
@@ -34,6 +37,7 @@ $(document).ready(function(){
 <p>dropList lightweight dropdown using jquery</p>
 	<div class="wrapper" id="dwrapper">
 		<select id="dlist">
+		 <option value="default">cars</option>
 		  <option value="volvo">Volvo</option>
 		  <option value="saab">Saab</option>
 		  <option value="mercedes">Mercedes</option>
@@ -72,6 +76,7 @@ $(document).ready(function(){
 		</select>
 	</div>
 
+<p>Click Here to see the selected item </p><a href="#" id="get_json" style="text-decoration:none; padding:5px 20px; background:#f44549; color:#fff;">Get Item</a>
 </div>
 </body>
 </html>
