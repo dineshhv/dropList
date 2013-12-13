@@ -50,17 +50,22 @@ Finally include the script to initialize the dropList
 
 ####selected:
 '["default"]' or '["saab","Honda"]'
+
 Selected option will enable the default selection of the dropList. This selected option is applicable only for the standard and multiselect. It is not available for the search dropList 
 ####speed
 200 or 300
+
 speed is to determine the UI animation Speed, will accept integer values.
 ####multiple
 true/false
+
 This one for enabling the multi selection option for the dropList.
 ####search
 true/false
+
 search option is to enable the combo option (droplist with search box).
 ####text
 "Select your car" 
+
 text option for customize the textbox value of the combo dropList.
 
