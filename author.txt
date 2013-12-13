@@ -1,0 +1,2 @@
+Author: Dinesh Vadivel
+Plugin: jquery.dropList.1.0.0.js
