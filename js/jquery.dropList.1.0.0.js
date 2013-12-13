@@ -102,7 +102,7 @@
 					
 					$.each(json,function(key,value){
 
-						console.log($('#'+ID));
+
 						$('#'+ID).children('option[value='+value+']').attr('selected', 'selected');
 						//$('#dlholder_'+rand).siblings('#'+ID).children('option[value='+value+']').attr('selected', 'selected');
 						temp+=value+',';
