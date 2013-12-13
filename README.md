@@ -20,7 +20,7 @@ Multiselect dropList is same as standard droplist with additional feature to sel
 ```
 
 ###Combo dropList with search option
-	Combo dropList is a combination of both search and selection list box. 
+Combo dropList is a combination of both search and selection list box. 
 ```
 		        $('#dlist3').dropList({<br />
 					search		: true<br />
@@ -28,18 +28,18 @@ Multiselect dropList is same as standard droplist with additional feature to sel
 ```
 
 ###Installation
-	For installation you gone need the following plugins, just include the latest version of jQuery, jQuery UI and dropList plugin
+For installation you gone need the following plugins, just include the latest version of jQuery, jQuery UI and dropList plugin
 ```
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src="js/jquery.dropList.1.0.0.js"></script>
 
 ```
-	Then include the External CSS library
+Then include the External CSS library
 ```
-<link rel="stylesheet" type="text/css" href="css/dropList.css" />
+	<link rel="stylesheet" type="text/css" href="css/dropList.css" />
 ```
-	Finally include the script to initialize the dropList
+Finally include the script to initialize the dropList
 ```
 			$('#dlist').dropList();
 ```
@@ -48,19 +48,19 @@ Multiselect dropList is same as standard droplist with additional feature to sel
 
 
 
-####selected:####
-		<p style="background:#ececec; padding:7px 5px;">'["default"]' or '["saab","Honda"]'
-		Selected option will enable the default selection of the dropList. This selected option is applicable only for the standard and multiselect. It is not available for the search dropList 
-####>speed####
-		<p style="background:#ececec; padding:7px 5px;">200 or 300
-		speed is to determine the UI animation Speed, will accept integer values.
-####multiple####
-		<p style="background:#ececec; padding:7px 5px;">true/false
-		This one for enabling the multi selection option for the dropList.
-####search####
-		<p style="background:#ececec; padding:7px 5px;">true/false
-		search option is to enable the combo option (droplist with search box).
-####text####
-		<p style="background:#ececec; padding:7px 5px;">"Select your car" 
-		text option for customize the textbox value of the combo dropList.
+####selected:
+'["default"]' or '["saab","Honda"]'
+Selected option will enable the default selection of the dropList. This selected option is applicable only for the standard and multiselect. It is not available for the search dropList 
+####speed
+200 or 300
+speed is to determine the UI animation Speed, will accept integer values.
+####multiple
+true/false
+This one for enabling the multi selection option for the dropList.
+####search
+true/false
+search option is to enable the combo option (droplist with search box).
+####text
+"Select your car" 
+text option for customize the textbox value of the combo dropList.
 
