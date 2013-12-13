@@ -3,7 +3,7 @@ dropList
 
 <p>dropList is a lightweight jQuery plugin to custom UI style for drop down list. The plugin has droplist, multilist and combo list (search and dropdown) options</p>
 
-	<div class="block">
+
 		<h3>Basic dropList</h3>
 		<p>This is standard dropList with simple selection, users can make one selection at a time.</p>
 			<div class="wrapper" id="dwrapper">
@@ -28,8 +28,7 @@ dropList
 		    </code>
 		</blockquote>
 			
-	</div>	
-	<div class="block">
+
 	<h3>Multiselection dropList</h3>
 	<p>Multiselect dropList is same as standard droplist with additional feature to select more than one item, you can customize the drop list easily by adding property variables</p>
 		<div class="wrapper" id="dwrapper2">
@@ -60,8 +59,7 @@ dropList
 				});	
 		    </code>
 		</blockquote>
-	</div>
-	<div class="block">
+
 	<h3>Combo dropList with search option</h3>
 	<p>Combo dropList is a combination of both search and selection list box. </p>
 		<div class="wrapper" id="dwrapper3">
@@ -89,9 +87,7 @@ dropList
 				});
 		    </code>
 		</blockquote>
-	</div>	
-	
-	<div class="block">
+
 	<h3>Installation</h3>
 	<p>For installation you gone need the following plugins, just include the latest version of jQuery, jQuery UI and dropList plugin</p>
 	<blockquote>
@@ -111,16 +107,9 @@ dropList
 			$('#dlist').dropList();
 	   </code>
 	</blockquote>
-	</div>
-	<div class="block">
+
 	<h3>Configuration</h3>
-	<!--text		: "Select your car",
-          speed		: 200,
-        
-          type		: "dropdown",
-          search	: false,
-          multiple	: false,
-          selected	: ""-->
+
 
 
 		<h4>selected:</h4>
