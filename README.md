@@ -1,6 +1,4 @@
-dropList
-========
-
+### dropList
 dropList is a lightweight jQuery plugin to custom UI style for drop down list. The plugin has droplist, multilist and combo list (search and dropdown) options
 
 
