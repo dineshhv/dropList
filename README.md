@@ -30,11 +30,14 @@ Multiselect dropList is same as standard droplist with additional feature to sel
 ###Installation
 	For installation you gone need the following plugins, just include the latest version of jQuery, jQuery UI and dropList plugin
 ```
-			&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js&quot;&gt;&lt;/script&gt;<br/>			&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js&quot;&gt;&lt;/script&gt;<br/>			&lt;script src=&quot;js/jquery.dropList.1.0.0.js&quot;&gt;&lt;/script&gt;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="js/jquery.dropList.1.0.0.js"></script>
+
 ```
 	Then include the External CSS library
 ```
-			&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/dropList.css&quot; /&gt;
+<link rel="stylesheet" type="text/css" href="css/dropList.css" />
 ```
 	Finally include the script to initialize the dropList
 ```
