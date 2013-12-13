@@ -1,0 +1,35 @@
+{
+    "name": "dropList",
+    "title": "jQuery dropList",
+    "description": "dropList is a lightweight jQuery plugin to custom UI style for drop down list. The plugin has droplist, multilist and combo list (search and dropdown) options",
+    "keywords": [
+        "UI",
+        "dropdown",
+        "multiselect"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "name": "Dinesh Vadivel",
+        "url": "https://github.com/dineshhv/dropList/blob/master/author.txt"
+    },
+    "maintainers": [
+        {
+            "name": "dinesh",
+            "email": "dhuvarak12@gmail.com",
+            "url": "http://www.droplist.vinmein.com/"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/dineshhv/dropList/blob/master/LICENSE"
+        }
+    ],
+    "bugs": "https://github.com/dineshhv/dropList/issues",
+    "homepage": "https://github.com/dineshhv/dropList",
+    "docs": "https://github.com/dineshhv/dropList",
+    "download": "https://github.com/dineshhv/dropList/releases",
+    "dependencies": {
+        "jquery": ">=1.6"
+    }
+}
