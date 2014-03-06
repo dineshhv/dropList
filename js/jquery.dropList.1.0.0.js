@@ -25,7 +25,7 @@
           type		: "dropdown",
           search	: false,
           multiple	: false,
-          selected	: ""
+          selected	: '["default"]'
        }, options || {});
        
        var matched, browser;
@@ -75,30 +75,34 @@
 
    function GenerateUI(element, options, browser) 
    {
-		console.log(options.ar);
+		
 		rand=Math.floor((Math.random()*9999999)+9999);
-
 		ID=element.attr('id');
-		parentID=element.parent().attr('id');
+		var parentID=element.parent().attr('id');
+		
 		$('#'+ID).hide();
 		if(options.search==false)
 		{
 			
 			if(options.selected=="")
 			{
+				
 				$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText" id="dltext"  data-titem="'+options.text+'">'+options.text+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
 			}
 			else
 			{
-				var json=$.parseJSON( options.selected);
+				var json=$.parseJSON(options.selected);
 				var parsed=json[0];
+
 				if(options.multiple==false)
 				{
+				
 				$('#'+parentID).append('<div class="dListholder" id="dlholder_'+rand+'"><div class="dListText" id="dltext"  data-titem="'+options.text+'">'+parsed+'</div><div class="dListBtn" id="dlbtn"></div><div id="tempdllist" style="display:none;">'+options.text+'</div></div>');
 				$('#dlholder_'+rand).siblings('#dlist').children('option[value='+parsed+']').attr('selected', 'selected');
 				}
 				else
-				{	var temp='';
+				{	
+				var temp='';
 					
 					$.each(json,function(key,value){
 
@@ -125,6 +129,7 @@
 			{
 				$('#dlholder_'+rand).click(function(){
 					var split=this.id.split("_");
+
 					$('.dListdrop').each(function(){
 						if(this.id!="dldrop_"+split[1]&&$('#'+this.id).is(":visible"))
 						{
@@ -158,6 +163,7 @@
 						$(this).removeClass('currentclick');
 						$("#dldrop_"+split[1]+" #SelectItem").click(function(){
 							selection=$(this).text();
+							
 							$('#dlholder_'+split[1]+' #dltext').text(selection);
 							$('#dlholder_'+split[1]).siblings('#dlist').children('option:selected').removeAttr('selected');
 							$('#dlholder_'+split[1]).siblings('#dlist').children('option[value='+selection+']').attr('selected', 'selected');
